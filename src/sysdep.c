@@ -2775,6 +2775,15 @@ emacs_intr_read (int fd, void *buf, ptrdiff_t nbyte, bool interruptible)
     }
   while (result < 0 && errno == EINTR);
 
+  if (result > 0) {
+      while (nbyte - result > 0) {
+          ssize_t r = read(fd, (char*)buf + result, nbyte - result);
+          if (r <= 0) break;
+          if (interruptible) maybe_quit ();
+          result += r;
+      }
+  }
+
   return result;
 }
 
