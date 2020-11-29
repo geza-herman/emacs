@@ -1408,6 +1408,7 @@ affects all frames on the same terminal device.  */)
      be copied as well.  */
   for (tem = f->face_alist; CONSP (tem); tem = XCDR (tem))
     XSETCDR (XCAR (tem), Fcopy_sequence (XCDR (XCAR (tem))));
+  fset_face_alist (f, f->face_alist);
 
   f->can_set_window_size = true;
   f->after_make_frame = true;
@@ -4103,6 +4104,21 @@ frame_float (struct frame *f, Lisp_Object val, enum frame_float_type what,
 	  emacs_abort ();
 	}
     }
+}
+
+void
+fset_face_alist (struct frame *f, Lisp_Object val)
+{
+  f->face_alist = val;
+  f->face_by_name = make_hash_table(hashtest_eq, list_length(val), DEFAULT_REHASH_SIZE, DEFAULT_REHASH_THRESHOLD, Qnil, false);
+  struct Lisp_Hash_Table *t = XHASH_TABLE(f->face_by_name);
+  for (; ! NILP (val); val = XCDR (val)) {
+      Lisp_Object key = XCAR(XCAR(val));
+      Lisp_Object value = XCDR(XCAR(val));
+      Lisp_Object hash_code;
+      hash_lookup(t, key, &hash_code);
+      hash_put(t, key, value, hash_code);
+  }
 }
 
 /* Change the parameters of frame F as specified by ALIST.

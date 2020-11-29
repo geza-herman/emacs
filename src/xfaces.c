@@ -1955,6 +1955,7 @@ resolve_face_name (Lisp_Object face_name, bool signal_p)
    face text properties; Ediff uses that).
    If SIGNAL_P, signal an error if FACE_NAME is not a valid face name.
    Otherwise, value is nil if FACE_NAME is not a valid face name.  */
+#if 0
 static Lisp_Object
 lface_from_face_name_no_resolve (struct frame *f, Lisp_Object face_name,
 				 bool signal_p)
@@ -1975,6 +1976,41 @@ lface_from_face_name_no_resolve (struct frame *f, Lisp_Object face_name,
 
   return lface;
 }
+#else
+static Lisp_Object
+lface_from_face_name_no_resolve (struct frame *f, Lisp_Object face_name,
+                                 bool signal_p)
+{
+    Lisp_Object lface;
+
+    if (f) {
+        if (f->face_by_name) {
+            struct Lisp_Hash_Table *t = XHASH_TABLE(f->face_by_name);
+            ptrdiff_t i = hash_lookup (t, face_name, NULL);
+            if (i >= 0) {
+                lface = HASH_VALUE(t, i);
+                check_lface (lface);
+                return lface;
+            }
+        }
+
+        if (signal_p)
+            signal_error ("Invalid face", face_name);
+        return Qnil;
+    } else {
+        lface = assq_no_quit (face_name, Vface_new_frame_defaults);
+
+        if (CONSP (lface))
+            lface = XCDR (lface);
+        else if (signal_p)
+            signal_error ("Invalid face", face_name);
+
+        check_lface (lface);
+
+        return lface;
+    }
+}
+#endif
 
 /* Return the face definition of FACE_NAME on frame F.  F null means
    return the definition for new frames.  FACE_NAME may be a string or
