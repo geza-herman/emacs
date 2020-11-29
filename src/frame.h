@@ -160,6 +160,7 @@ struct frame
 
   /* Alist of elements (FACE-NAME . FACE-VECTOR-DATA).  */
   Lisp_Object face_alist;
+  Lisp_Object face_by_name;
 
   /* A vector that records the entire structure of this frame's menu bar.
      For the format of the data, see extensive comments in xmenu.c.
@@ -660,11 +661,8 @@ fset_condemned_scroll_bars (struct frame *f, Lisp_Object val)
 {
   f->condemned_scroll_bars = val;
 }
-INLINE void
-fset_face_alist (struct frame *f, Lisp_Object val)
-{
-  f->face_alist = val;
-}
+void
+fset_face_alist (struct frame *f, Lisp_Object val);
 #if defined (HAVE_WINDOW_SYSTEM)
 INLINE void
 fset_parent_frame (struct frame *f, Lisp_Object val)
