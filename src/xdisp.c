@@ -11839,6 +11839,7 @@ resize_mini_window (struct window *w, bool exact_p)
 	    height = it.current_y + it.max_ascent + it.max_descent;
 	  height -= min (it.extra_line_spacing, it.max_extra_line_spacing);
 	}
+    height += 2;
 
       /* Compute a suitable window start.  */
       if (height > max_height)

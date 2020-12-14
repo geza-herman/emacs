@@ -4717,7 +4717,7 @@ resize_frame_windows (struct frame *f, int size, bool horflag)
   Lisp_Object mini = f->minibuffer_window;
   struct window *m = WINDOWP (mini) ? XWINDOW (mini) : NULL;
   int mini_height = ((FRAME_HAS_MINIBUF_P (f) && !FRAME_MINIBUF_ONLY_P (f))
-		     ? unit + m->pixel_height - window_body_height (m, true)
+		     ? unit + m->pixel_height - window_body_height (m, true) + 2
 		     : 0);
 
   new_pixel_size = max (horflag ? size : size - mini_height, unit);
@@ -5252,7 +5252,7 @@ void
 shrink_mini_window (struct window *w)
 {
   struct frame *f = XFRAME (w->frame);
-  int delta = window_body_height (w, true) - FRAME_LINE_HEIGHT (f);
+  int delta = window_body_height (w, true) - (FRAME_LINE_HEIGHT (f) + 2);
 
   eassert (MINI_WINDOW_P (w));
 
