@@ -999,7 +999,7 @@ composition_compute_stop_pos (struct composition_it *cmp_it, ptrdiff_t charpos, 
   cmp_it->ch = -2;
   cmp_it->reversed_p = 0;
   cmp_it->stop_pos = endpos;
-  if (charpos == endpos)
+  /* if (charpos == endpos) */
     return;
   /* FIXME: Bidi is not yet handled well in static composition.  */
   if (charpos < endpos
