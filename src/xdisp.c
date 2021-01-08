@@ -21782,8 +21782,8 @@ compute_line_metrics (struct it *it)
       eassert (row->pixel_width >= 0);
       eassert (row->ascent >= 0 && row->height > 0);
 
-      row->overlapping_p = (MATRIX_ROW_OVERLAPS_SUCC_P (row)
-			    || MATRIX_ROW_OVERLAPS_PRED_P (row));
+      /* row->overlapping_p = (MATRIX_ROW_OVERLAPS_SUCC_P (row) */
+			    /* || MATRIX_ROW_OVERLAPS_PRED_P (row)); */
 
       /* If first line's physical ascent is larger than its logical
          ascent, use the physical ascent, and make the row taller.
