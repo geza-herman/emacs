@@ -49,6 +49,9 @@ extern char **environ;
 # define USABLE_POSIX_SPAWN 0
 #endif
 
+#undef USABLE_POSIX_SPAWN
+#define USABLE_POSIX_SPAWN 0
+
 #include "lisp.h"
 
 #ifdef SETUP_SLAVE_PTY
