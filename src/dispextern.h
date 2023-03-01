@@ -1536,8 +1536,7 @@ struct glyph_string
    which is compared against minibuf_selected_window (if MBW matches).  */
 
 #define CURRENT_MODE_LINE_ACTIVE_FACE_ID_3(SELW, MBW, SCRW)    	\
-     ((!mode_line_in_non_selected_windows			\
-       || (SELW) == XWINDOW (selected_window)			\
+     (((SELW) == XWINDOW (selected_window)			\
        || (minibuf_level > 0					\
            && !NILP (minibuf_selected_window)			\
            && (MBW) == XWINDOW (minibuf_window)			\
