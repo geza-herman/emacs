@@ -1077,15 +1077,15 @@ composition_compute_stop_pos (struct composition_it *cmp_it, ptrdiff_t charpos,
     return;
   /* Look for static compositions.  */
   /* FIXME: Bidi is not yet handled well in static composition.  */
-  if (include_static
-      && charpos < endpos
-      && find_composition (charpos, endpos, &start, &end, &prop, string)
-      && start >= charpos
-      && composition_valid_p (start, end, prop))
-    {
-      cmp_it->stop_pos = endpos = start;
-      cmp_it->ch = -1;
-    }
+  /* if (include_static */
+  /*     && charpos < endpos */
+  /*     && find_composition (charpos, endpos, &start, &end, &prop, string) */
+  /*     && start >= charpos */
+  /*     && composition_valid_p (start, end, prop)) */
+  /*   { */
+  /*     cmp_it->stop_pos = endpos = start; */
+  /*     cmp_it->ch = -1; */
+  /*   } */
   if ((NILP (string)
        && NILP (BVAR (current_buffer, enable_multibyte_characters)))
       || (STRINGP (string) && !STRING_MULTIBYTE (string))
