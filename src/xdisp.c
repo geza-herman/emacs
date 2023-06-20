@@ -13651,9 +13651,7 @@ window_buffer_changed (struct window *w)
 static bool
 mode_line_update_needed (struct window *w)
 {
-  return (w->column_number_displayed != -1
-	  && !(PT == w->last_point && !window_outdated (w))
-	  && (w->column_number_displayed != current_column ()));
+  return !(PT == w->last_point && !window_outdated (w));
 }
 
 /* True if window start of W is frozen and may not be changed during
