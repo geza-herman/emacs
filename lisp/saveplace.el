@@ -151,12 +151,6 @@ corresponding file name format, therefore setting this option
 just using `setq' may cause out-of-sync problems.  You should use
 either `setopt' or \\[customize-variable] to set this option."
   :type 'boolean
-  :set (lambda (sym val)
-         (let ((old (if (default-boundp sym) (default-value sym))))
-           (set-default sym val)
-           (if (or (equal old val) (not save-place-loaded))
-               nil                      ;Nothing to do.
-             (save-place--normalize-alist))))
   :version "28.1")
 
 (defun save-place--normalize-alist ()
