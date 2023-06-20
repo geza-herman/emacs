@@ -153,24 +153,6 @@ corresponding file name format, therefore setting this option
 just using `setq' may cause out-of-sync problems.  You should use
 either `setopt' or M-x customize-variable to set this option."
   :type 'boolean
-  :set (lambda (sym val)
-         (set-default sym val)
-         (or save-place-loaded (save-place-load-alist-from-file))
-         (let ((fun (if val #'abbreviate-file-name #'expand-file-name)))
-           (setq save-place-alist
-                 (cl-delete-duplicates
-                  (cl-loop for (k . v) in save-place-alist
-                           collect
-                           (cons (funcall fun k)
-                                 (if (listp v)
-                                     (cl-loop for (k1 . v1) in v
-                                              collect
-                                              (cons k1 (funcall fun v1)))
-                                   v)))
-                  :key #'car
-                  :from-end t
-                  :test #'equal)))
-         val)
   :version "28.1")
 
 (defcustom save-place-save-skipped t
