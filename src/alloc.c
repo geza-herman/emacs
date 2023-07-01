@@ -317,7 +317,7 @@ my_heap_start (void)
 
 /* Default value of gc_cons_threshold (see below).  */
 
-#define GC_DEFAULT_THRESHOLD (100000 * word_size)
+#define GC_DEFAULT_THRESHOLD (1048576 * word_size)
 
 /* Global variables.  */
 struct emacs_globals globals;
