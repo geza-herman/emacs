@@ -269,7 +269,7 @@ voidfuncptr __MALLOC_HOOK_VOLATILE __malloc_initialize_hook EXTERNALLY_VISIBLE
 
 /* Default value of gc_cons_threshold (see below).  */
 
-#define GC_DEFAULT_THRESHOLD (100000 * word_size)
+#define GC_DEFAULT_THRESHOLD (1048576 * word_size)
 
 /* Global variables.  */
 struct emacs_globals globals;
