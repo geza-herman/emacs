@@ -508,8 +508,8 @@ check_display_width (ptrdiff_t pos, ptrdiff_t col, ptrdiff_t *endpos)
 	    width = (int)(XFLOAT_DATA (prop) + 0.5) - col;
 	}
       /* Handle 'display' strings.   */
-      else if (STRINGP (val))
-	width = XFIXNUM (Fstring_width (val, Qnil, Qnil));
+    /*   else if (STRINGP (val)) */
+	/* width = XFIXNUM (Fstring_width (val, Qnil, Qnil)); */
 
       if (width >= 0)
 	{
