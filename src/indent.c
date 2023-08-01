@@ -566,8 +566,8 @@ check_display_width (Lisp_Object window,
 	    }
 	}
       /* Handle 'display' strings.   */
-      else if (STRINGP (val))
-	width = XFIXNUM (Fstring_width (val, Qnil, Qnil));
+    /*   else if (STRINGP (val)) */
+	/* width = XFIXNUM (Fstring_width (val, Qnil, Qnil)); */
 
       if (width >= 0)
 	{
