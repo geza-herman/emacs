@@ -487,7 +487,9 @@ of[ \t]+\"?\\([a-zA-Z]?:?[^\":\n]+\\)\"?:" 3 2 nil (1))
                      "Informational" "informational"
                      "I:"
                      "instantiated from"
+                     "required by"
                      "required from"
+                     "in 'constexpr' expansion of"
                      "Note" "note")
                   (: "[ skipping " (+ nonl) " ]"))))
           (: (* " ")
